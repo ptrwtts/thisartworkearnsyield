@@ -37,7 +37,7 @@ export default function Home() {
     setStewardAddress(artStewardAddress);
 
     const readOnlyProvider = test
-      ? new ethers.providers.JsonRpcProvider("https://goerli.infura.io/v3/a2a8cfe6c4a84e7cbc4a00559858cb82")
+      ? new ethers.providers.JsonRpcProvider("https://eth-goerli.alchemyapi.io/v2/qaRch1jm75Vit_6Y1IGPVYenp-gKn_GO")
       : new ethers.providers.JsonRpcProvider("https://mainnet.infura.io/v3/a2a8cfe6c4a84e7cbc4a00559858cb82");
 
     readOnlyProvider.on("block", async () => {
