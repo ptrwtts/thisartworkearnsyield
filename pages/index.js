@@ -29,11 +29,11 @@ export default function Home() {
   const [stewardAddress, setStewardAddress] = useState();
 
   useEffect(async () => {
-    const test = true;
+    const test = false;
 
     const artStewardAddress = test
       ? "0x4617C9fB73600DC2e5299fE8d01e7b2be34d344D"
-      : "0x0000000000000000000000000000000000000000";
+      : "0xd57a10c6218901d7f735BfCcA49B7Edb3A62227F";
     setStewardAddress(artStewardAddress);
 
     const readOnlyProvider = test
