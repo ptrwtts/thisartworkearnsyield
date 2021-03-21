@@ -142,7 +142,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2">
 
             <div className="px-5 lg:pl-32 mb-5">
-              <a className="mb-5" target="_blank" href="https://etherscan.io/address/0x997214ec4f289807a6677abbbd97a4cea813296a">
+              <a className="mb-5" target="_blank" href={'https://etherscan.io/address/'+artStewardAddress}>
                 <img src="/art.png" className="shadow border"></img>
               </a>
               <div className="pt-5 text-center text-sm">
