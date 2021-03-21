@@ -132,8 +132,8 @@ export default function Home() {
                 </button>
               </div>
             </div>
-          : <div className="m-3 pt-3 pr-3 text-center sm:text-right text-gray-400">
-              Connected account: {account}
+          : <div className="m-3 pt-3 pr-3 text-center text-sm sm:text-right text-gray-400">
+              Connected Account: <a target="_blank" href={'https://etherscan.io/address/'+account}>{account}</a>
             </div>
         }
 
@@ -145,6 +145,10 @@ export default function Home() {
               <a className="mb-5" target="_blank" href="https://etherscan.io/address/0x997214ec4f289807a6677abbbd97a4cea813296a">
                 <img src="/art.png" className="shadow border"></img>
               </a>
+              <div className="pt-5 text-center text-sm">
+                <span className="">Owner: </span> 
+                <a target="_blank" href={'https://etherscan.io/address/'+owner}>{owner}</a>
+                </div>
             </div>
 
             <div className="px-5">
