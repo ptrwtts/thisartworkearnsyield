@@ -114,17 +114,22 @@ export default function Home() {
     ownerEarn = ownerEarn.add(_yield.div(2));
     artistEarn = artistEarn.add(_yield.sub(_yield.div(2)))
 
-    // Approximate incremental yield
-    let timeElapsed = Date.now() - startTime;
-    let hardcodedAPY = 0.0878 * 1000000;
-    let yearMilliseconds = 365 * 24 * 60 * 60 * 1000;
-    let accrued =  deposit.mul(hardcodedAPY).div(1000000).mul(timeElapsed).div(yearMilliseconds); 
-    artistEarn = artistEarn.add(accrued)
-    ownerEarn = ownerEarn.add(accrued)
+    let ownerEarnIncremental = ownerEarn;
+    let artistEarnIncremental = artistEarn;
 
-    console.log('setting 2')
-    setArtistEarnings(artistEarn);
-    setOwnerEarnings(ownerEarn);
+    setInterval(function(){
+
+      // Approximate incremental yield
+      let timeElapsed = Date.now() - startTime;
+      let hardcodedAPY = 0.0878 * 1000000;
+      let yearMilliseconds = 365 * 24 * 60 * 60 * 1000;
+      let accrued =  deposit.mul(hardcodedAPY).div(1000000).mul(timeElapsed).div(yearMilliseconds); 
+      artistEarnIncremental = artistEarn.add(accrued)
+      ownerEarnIncremental = ownerEarn.add(accrued)
+      setArtistEarnings(artistEarnIncremental);
+      setOwnerEarnings(ownerEarnIncremental);
+      
+    },100)
 
     const yearnVaultsData = await fetch("https://vaults.finance/all");
     const vaultsData = await yearnVaultsData.json();
