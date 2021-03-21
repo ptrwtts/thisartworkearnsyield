@@ -32,12 +32,12 @@ export default function Home() {
     const test = true;
 
     const artStewardAddress = test
-      ? "0x9EC3798254DEB7d880E3d3570a5aCf75e2c50e68"
+      ? "0x4617C9fB73600DC2e5299fE8d01e7b2be34d344D"
       : "0x0000000000000000000000000000000000000000";
     setStewardAddress(artStewardAddress);
 
     const readOnlyProvider = test
-      ? new ethers.providers.JsonRpcProvider("http://127.0.0.1:8545")
+      ? new ethers.providers.JsonRpcProvider("https://goerli.infura.io/v3/a2a8cfe6c4a84e7cbc4a00559858cb82")
       : new ethers.providers.JsonRpcProvider("https://mainnet.infura.io/v3/a2a8cfe6c4a84e7cbc4a00559858cb82");
 
     readOnlyProvider.on("block", async () => {
@@ -123,7 +123,7 @@ export default function Home() {
         {!isConnected
           ? <div className="pt-3 pr-3 text-center sm:text-right">
               <div className="inline-flex rounded-md shadow">
-                <button onClick={() => chainId === 1 || chainId !== 1337 ? activate(injected) : alert("Please switch network to mainnet") } className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-indigo-50">
+                <button onClick={() => chainId === 1 || chainId === 5 || chainId !== 1337 ? activate(injected) : alert("Please switch network to mainnet") } className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-indigo-50">
                   Connect Wallet
                 </button>
               </div>
