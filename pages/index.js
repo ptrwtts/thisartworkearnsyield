@@ -128,7 +128,7 @@ export default function Home() {
                 </button>
               </div>
             </div>
-          : <div className="m-5 pt-3 pr-3 text-center sm:text-right">
+          : <div className="m-3 pt-3 pr-3 text-center sm:text-right text-gray-400">
               Connected account: {account}
             </div>
         }
@@ -159,8 +159,8 @@ export default function Home() {
                 </div>
                 <div className="flex flex-col pl-12">
                   <div>Artist Earnings</div>
-                  <div className="text-4xl py-4">{artistEarnings ? `${ethers.utils.formatEther(artistEarnings)} ETH` : "Fetching..." }</div>
-                  <div className="text-gray-400">Owner Yield: {ownerEarnings ? `${ethers.utils.formatEther(ownerEarnings)} ETH` : "Fetching..." }</div>
+                  <div className="text-4xl py-4">{artistEarnings ? `${ethers.utils.formatEther(artistEarnings).slice(0, 12)} ETH` : "Fetching..." }</div>
+                  <div className="text-gray-400">Owner Yield: {ownerEarnings ? `${ethers.utils.formatEther(ownerEarnings).slice(0, 12)} ETH` : "Fetching..." }</div>
                 </div>
               </div>
               {currentPrice && newSellPrice && <div className="rounded shadow border px-8 py-6">
