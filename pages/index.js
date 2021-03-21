@@ -1,6 +1,16 @@
+import { useWeb3React } from "@web3-react/core";
 import Head from 'next/head'
 
+import useEagerConnect from "../hooks/useEagerConnect";
+import { injected } from "../connectors";
+
 export default function Home() {
+  const { account, activate, library, chainId } = useWeb3React();
+
+  const triedToEagerConnect = useEagerConnect();
+
+  const isConnected = typeof account === "string" && !!library;
+
   return (
     <div>
       <Head>
@@ -9,13 +19,18 @@ export default function Home() {
       </Head>
 
       <main>
-      <div class="pt-3 pr-3 text-center sm:text-right">
-        <div class="inline-flex rounded-md shadow">
-          <button class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-indigo-50">
-            Connect Wallet
-          </button>
-        </div>
-      </div>
+        {!isConnected
+          ? <div class="pt-3 pr-3 text-center sm:text-right">
+              <div class="inline-flex rounded-md shadow">
+                <button onClick={() => chainId == 1 ? activate(injected) : alert("Please switch network to mainnet") } class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-indigo-50">
+                  Connect Wallet
+                </button>
+              </div>
+            </div>
+          : <div class="m-5 pt-3 pr-3 text-center sm:text-right">
+              Connected account: {account}
+            </div>
+        }
         {/* <div class="pt-3 pr-3 text-center sm:text-right">
           <button type="submit" class="inline-flex justify-center py-3 px-5 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
             Connect Wallet
