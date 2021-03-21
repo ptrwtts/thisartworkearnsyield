@@ -220,7 +220,7 @@ export default function Home() {
 
                     {account === owner &&
                       <>
-                        <div className="pb-4 font-semibold">Set new price: </div>
+                        <div className="pb-4 font-semibold">Set New Price: </div>
                         <div className="flex flex-row items-center text-lg">
                           <div>
                             <input
@@ -251,7 +251,7 @@ export default function Home() {
                             }}
                             type="submit"
                             className="inline-flex justify-center ml-5 py-4 px-6 border border-transparent shadow-sm text-md font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            Set price
+                            Set Price
                           </button>
                         </div>
                       </>
@@ -259,7 +259,7 @@ export default function Home() {
 
                     {account === artist || account === owner &&
                       <div>
-                        <div className="pt-4 pb-4 font-semibold">Collect yield: </div>
+                        <div className="pt-4 pb-4 font-semibold">Collect Yield: </div>
                         <div className="text-lg">
                           <button
                               onClick={async () => {
