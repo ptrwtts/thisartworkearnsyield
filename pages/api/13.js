@@ -7,6 +7,6 @@ export default (req, res) => {
     "external_url": "https://thisartworkearnsyield.com/",
     "image": "https://thisartworkearnsyield.com/art.png",
     "name": "This Artwork Earns Yield",
-    "description": "https://thisartworkearnsyield.com/"
+    "description": "An NFT that earns royalties for the artist using DeFi yield: https://thisartworkearnsyield.com/"
   })
 }
