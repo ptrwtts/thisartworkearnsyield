@@ -9,11 +9,18 @@ export default function Home() {
       </Head>
 
       <main>
-        <div class="p-3 text-right justify-end">
-          <button type="submit" class="inline-flex justify-center py-4 px-6 border border-transparent shadow-sm text-md font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+      <div class="pt-3 pr-3 text-center sm:text-right">
+        <div class="inline-flex rounded-md shadow">
+          <button class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-indigo-50">
             Connect Wallet
           </button>
         </div>
+      </div>
+        {/* <div class="pt-3 pr-3 text-center sm:text-right">
+          <button type="submit" class="inline-flex justify-center py-3 px-5 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            Connect Wallet
+          </button>
+        </div> */}
         <div class="flex flex-container justify-center pt-5">
           <div class="grid grid-cols-1 md:grid-cols-2">
             <div class="px-5 lg:pl-32 mb-5">
@@ -22,7 +29,7 @@ export default function Home() {
               </a>
             </div>
             <div class="px-5">
-              <div class="flex flex-col">
+              <div class="flex flex-col text-center sm:text-left">
                 <div>To own this artwork, you must <span class="italic">deposit what you think it is worth.</span></div>
                 <div><span class="italic">Anyone can buy it off you</span>, by depositing a higher amount.</div>
                 <div>Your deposit <span class="italic">earns interest</span>, split between you and the artist.</div>
@@ -87,10 +94,11 @@ export default function Home() {
 
                     <div class="pt-2"> - Prompted by <a class="underline" target="_blank" href="https://nfthack.ethglobal.co/">NFT Hack</a> (unofficial submission because we forgot to signup 😭)</div>
 
-                    <h2 class="text-3xl pt-10">Disclaimer</h2>
+                    <h2 class="text-3xl pt-10">Disclaimers</h2>
 
-                    <div class="pt-5">Please review <a class="underline" target="_blank" href="https://github.com/georgeroman/liquid-nft">contract code</a>. Use at your own risk.</div>
+                    <div class="pt-5"> - Please review <a class="underline" target="_blank" href="https://github.com/georgeroman/liquid-nft">contract code</a>. Use at your own risk.</div>
 
+                    <div class="pt-2"> - Yield is not guaranteed to be positive 🙈</div>
                 </div>
             </div>
           </div>
