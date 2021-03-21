@@ -16,8 +16,11 @@ export default function Home() {
         </div>
         <div class="flex flex-container justify-center pt-10 px-8">
           <div class="grid grid-cols-1 md:grid-cols-2">
-            <div class="px-8 lg:pl-32">
+            <div class="px-8 lg:pl-32 text-center">
               <img src="/art.png" class="shadow border"></img>
+              <a class="text-gray-400 block my-5" target="_blank" href="https://etherscan.io/address/0x997214ec4f289807a6677abbbd97a4cea813296a">
+                0x997214ec4f289807a6677abbbd97a4cea813296a
+              </a>
             </div>
             <div class="px-8">
               <div class="flex flex-col">
@@ -37,7 +40,7 @@ export default function Home() {
                   <div class="text-gray-400">Owner Yield: 0.081712 ETH</div>
                 </div>
               </div>
-              <div class="rounded shadow border p-8">
+              <div class="rounded shadow border px-8 py-6">
                 <div class="pb-4 font-semibold">Purchase and Set New Price: </div>
                 <div class="flex flex-row items-center text-lg">
                   <div>
@@ -48,14 +51,14 @@ export default function Home() {
                     Buy
                   </button>
                 </div>
-                <div class="py-3 text-left text-gray-400 text-sm">
+                <div class="pt-3 text-left text-gray-400 text-smg">
                    - 0.00615 ETH to artist (5% commission)<br />
                    - 0.11685 ETH to current owner<br />
-                   - 0.07 ETH refundable deposit (Earns 5.23% APY) <br />
+                   - 0.07 ETH refundable deposit (Earns 5.23% APY)
                 </div>
               </div>
 
-                 <div class="py-12 my-12 border-t border-gray-300">
+                 <div class="py-12 ">
                     <h2 class="text-3xl">About</h2>
 
                     <div class="py-5">As NFTs proliferate, how can we ensure that creators capture appropriate value?</div>
@@ -75,7 +78,14 @@ export default function Home() {
 
                     <div class="pb-5">We are also excited to start a conversation about how Ethereum's composability can be leveraged to create novel solutions to this challenge that would not otherwise be possible.</div>
 
-                    <h2 class="text-3xl">Credit</h2>./ hg';hg'
+                    <h2 class="text-3xl">Credit</h2>
+
+                    <div class="pt-5">Made with gwei by <a class="underline" target="_blank" href="https://twitter.com/ptrwtts">@ptrwtts</a> and <a class="underline" target="_blank" href="https://github.com/georgeroman">@georgeroman</a></div>
+
+                    <div class="pt-5">Inspired by <a class="underline" target="_blank" href="https://thisartworkisalwaysonsale.com/">This Artwork Is Always On Sale</a></div>
+
+                    <div class="pt-5">Prompted by <a class="underline" target="_blank" href="https://nfthack.ethglobal.co/">NFT Hack</a> (unofficial submission because we forgot to signup 😭)</div>
+
                 </div>
             </div>
           </div>
