@@ -309,7 +309,7 @@ export default function Home() {
 
                 <h2 className="text-3xl pt-10">Disclaimers</h2>
 
-                <div className="pt-5"> - Please review <a className="underline" target="_blank" href="https://github.com/georgeroman/liquid-nft">contract code</a>. Use at your own risk.</div>
+                <div className="pt-5"> - Please review <a className="underline" target="_blank" href="https://github.com/georgeroman/this-artwork-earns-yield">contract code</a>. Use at your own risk.</div>
 
                 <div className="pt-2"> - Yield is not guaranteed to be positive 🙈</div>
               </div>
