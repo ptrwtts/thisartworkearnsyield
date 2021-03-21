@@ -36,35 +36,52 @@ export default function Home() {
       : "0xd57a10c6218901d7f735BfCcA49B7Edb3A62227F";
     setStewardAddress(artStewardAddress);
 
+    const startTime = new Date('Mar-21-2021 19:05:39').getTime(); //Date.now()
+
     const readOnlyProvider = test
       ? new ethers.providers.JsonRpcProvider("https://eth-goerli.alchemyapi.io/v2/qaRch1jm75Vit_6Y1IGPVYenp-gKn_GO")
       : new ethers.providers.JsonRpcProvider("https://eth-mainnet.alchemyapi.io/v2/psgRyOX_y0sFlhP5qNe4W4UrJ6MpOpEd");
 
     readOnlyProvider.on("block", async () => {
       console.log('new block');
+      if(!initalLoad) {
+        console.log('ignoring');
+      } else  {
 
-      const currentPrice = await artStewardRO.sellPrice();
-      setCurrentPrice(currentPrice);
-  
-      const coinGeckoPriceData = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=ethereum');
-      const priceData = await coinGeckoPriceData.json();
-      const usdPrice = priceData[0].current_price;
-      setCurrentPriceDollars((usdPrice * Number(ethers.utils.formatEther(currentPrice))).toString());
-  
-      let ownerEarn = await artStewardRO.totalEarnings(owner);
-      let artistEarn = await artStewardRO.totalEarnings(artist);
-      const _yield = await artStewardRO.getCurrentYield();
-      ownerEarn = ownerEarn.add(_yield.div(2));
-      artistEarn = artistEarn.add(_yield.sub(_yield.div(2)))
-  
-      setArtistEarnings(artistEarn);
-      setOwnerEarnings(ownerEarn);
-  
-      const yearnVaultsData = await fetch("https://vaults.finance/all");
-      const vaultsData = await yearnVaultsData.json();
-      const yvWETH = vaultsData.filter(data => data.symbol === "yvWETH");
-      const apy = (yvWETH[0].apy.recommended * 100).toFixed(2);
-      setYearnAPY(apy);
+        const currentPrice = await artStewardRO.sellPrice();
+        setCurrentPrice(currentPrice);
+    
+        let ownerEarn = await artStewardRO.totalEarnings(owner);
+        let artistEarn = await artStewardRO.totalEarnings(artist);
+        const _yield = await artStewardRO.getCurrentYield();
+        ownerEarn = ownerEarn.add(_yield.div(2));
+        artistEarn = artistEarn.add(_yield.sub(_yield.div(2)))
+
+        // Approximate incremental yield
+        let timeElapsed = Date.now() - startTime;
+        let hardcodedAPY = 0.0878 * 1000000;
+        let yearMilliseconds = 365 * 24 * 60 * 60 * 1000;
+        let accrued =  deposit.mul(hardcodedAPY).div(1000000).mul(timeElapsed).div(yearMilliseconds); 
+        artistEarn = artistEarn.add(accrued)
+        ownerEarn = ownerEarn.add(accrued)
+    
+        console.log('setting 1')
+        setArtistEarnings(artistEarn);
+        setOwnerEarnings(ownerEarn);
+    
+        const yearnVaultsData = await fetch("https://vaults.finance/all");
+        const vaultsData = await yearnVaultsData.json();
+        const yvWETH = vaultsData.filter(data => data.symbol === "yvWETH");
+        const apy = (yvWETH[0].apy.recommended * 100).toFixed(2);
+        setYearnAPY(apy);
+
+        const coinGeckoPriceData = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=ethereum');
+        const priceData = await coinGeckoPriceData.json();
+        const usdPrice = priceData[0].current_price;
+        setCurrentPriceDollars((usdPrice * Number(ethers.utils.formatEther(currentPrice))).toString());
+
+      }
+      
     });
 
     const artStewardRO = new ethers.Contract(artStewardAddress, ArtStewardAbi, readOnlyProvider);
@@ -79,26 +96,6 @@ export default function Home() {
     const currentPrice = await artStewardRO.sellPrice();
     setCurrentPrice(currentPrice);
 
-    const coinGeckoPriceData = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=ethereum');
-    const priceData = await coinGeckoPriceData.json();
-    const usdPrice = priceData[0].current_price;
-    setCurrentPriceDollars((usdPrice * Number(ethers.utils.formatEther(currentPrice))).toString());
-
-    let ownerEarn = await artStewardRO.totalEarnings(owner);
-    let artistEarn = await artStewardRO.totalEarnings(artist);
-    const _yield = await artStewardRO.getCurrentYield();
-    ownerEarn = ownerEarn.add(_yield.div(2));
-    artistEarn = artistEarn.add(_yield.sub(_yield.div(2)))
-
-    setArtistEarnings(artistEarn);
-    setOwnerEarnings(ownerEarn);
-
-    const yearnVaultsData = await fetch("https://vaults.finance/all");
-    const vaultsData = await yearnVaultsData.json();
-    const yvWETH = vaultsData.filter(data => data.symbol === "yvWETH");
-    const apy = (yvWETH[0].apy.recommended * 100).toFixed(2);
-    setYearnAPY(apy);
-
     const newSellPrice = currentPrice.add(currentPrice.mul(5).div(100));
     setNewSellPrice(newSellPrice);
 
@@ -110,6 +107,38 @@ export default function Home() {
 
     const artistShare = currentPrice.sub(ownerShare);
     setArtistShare(artistShare);
+
+    let ownerEarn = await artStewardRO.totalEarnings(owner);
+    let artistEarn = await artStewardRO.totalEarnings(artist);
+    const _yield = await artStewardRO.getCurrentYield();
+    ownerEarn = ownerEarn.add(_yield.div(2));
+    artistEarn = artistEarn.add(_yield.sub(_yield.div(2)))
+
+    // Approximate incremental yield
+    let timeElapsed = Date.now() - startTime;
+    let hardcodedAPY = 0.0878 * 1000000;
+    let yearMilliseconds = 365 * 24 * 60 * 60 * 1000;
+    let accrued =  deposit.mul(hardcodedAPY).div(1000000).mul(timeElapsed).div(yearMilliseconds); 
+    artistEarn = artistEarn.add(accrued)
+    ownerEarn = ownerEarn.add(accrued)
+
+    console.log('setting 2')
+    setArtistEarnings(artistEarn);
+    setOwnerEarnings(ownerEarn);
+
+    const yearnVaultsData = await fetch("https://vaults.finance/all");
+    const vaultsData = await yearnVaultsData.json();
+    const yvWETH = vaultsData.filter(data => data.symbol === "yvWETH");
+    const apy = (yvWETH[0].apy.recommended * 100).toFixed(2);
+    setYearnAPY(apy);
+
+    const initalLoad = true;
+
+    const coinGeckoPriceData = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=ethereum');
+    const priceData = await coinGeckoPriceData.json();
+    const usdPrice = priceData[0].current_price;
+    setCurrentPriceDollars((usdPrice * Number(ethers.utils.formatEther(currentPrice))).toString());
+
   }, []);
 
   return (
@@ -169,8 +198,8 @@ export default function Home() {
 
                 <div className="flex flex-col pl-12">
                   <div>Artist Earnings</div>
-                  <div className="text-4xl py-4">{artistEarnings ? `${ethers.utils.formatEther(artistEarnings).slice(0, 12)} ETH` : "Fetching..." }</div>
-                  <div className="text-gray-400">Owner Yield: {ownerEarnings ? `${ethers.utils.formatEther(ownerEarnings).slice(0, 12)} ETH` : "Fetching..." }</div>
+                  <div className="text-4xl py-4">{artistEarnings ? `${ethers.utils.formatEther(artistEarnings).slice(0, 14)} ETH` : "Fetching..." }</div>
+                  <div className="text-gray-400">Owner Yield: {ownerEarnings ? `${ethers.utils.formatEther(ownerEarnings).slice(0, 14)} ETH` : "Fetching..." }</div>
                 </div>
 
               </div>
