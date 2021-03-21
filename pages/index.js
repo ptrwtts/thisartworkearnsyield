@@ -117,6 +117,10 @@ export default function Home() {
       <Head>
         <title>This Artwork Earns Yield</title>
         <link rel="icon" href="/favicon.ico" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="This Artwork Earns Yield" />
+        <meta name="twitter:description" content="An NFT that earns royalties for the artist using DeFi yield." />
+        <meta name="twitter:image" content="https://thisartworkearnsyield.com/art.png" />
       </Head>
 
       <main>
