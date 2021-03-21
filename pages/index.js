@@ -120,7 +120,7 @@ export default function Home() {
       </Head>
 
       <main>
-        {!isConnected && chainId
+        {!isConnected
           ? <div className="pt-3 pr-3 text-center sm:text-right">
               <div className="inline-flex rounded-md shadow">
                 <button onClick={() => chainId === 1 || chainId === 5 || chainId !== 1337 ? activate(injected) : alert("Please switch network to mainnet") } className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-indigo-50">
