@@ -9,7 +9,7 @@ import { injected } from "../connectors";
 import ArtStewardAbi from "../abi/ArtSteward.json";
 
 export default function Home() {
-  const { account, activate, library } = useWeb3React();
+  const { account, activate, library, chainId } = useWeb3React();
   useEagerConnect();
 
   const isConnected = typeof account === "string" && !!library;
