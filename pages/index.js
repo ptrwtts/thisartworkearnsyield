@@ -14,15 +14,14 @@ export default function Home() {
             Connect Wallet
           </button>
         </div>
-        <div class="flex flex-container justify-center pt-10 px-8">
+        <div class="flex flex-container justify-center pt-5">
           <div class="grid grid-cols-1 md:grid-cols-2">
-            <div class="px-8 lg:pl-32 text-center">
-              <img src="/art.png" class="shadow border"></img>
-              <a class="text-gray-400 block my-5" target="_blank" href="https://etherscan.io/address/0x997214ec4f289807a6677abbbd97a4cea813296a">
-                0x997214ec4f289807a6677abbbd97a4cea813296a
+            <div class="px-5 lg:pl-32 mb-5">
+              <a class="mb-5" target="_blank" href="https://etherscan.io/address/0x997214ec4f289807a6677abbbd97a4cea813296a">
+                <img src="/art.png" class="shadow border"></img>
               </a>
             </div>
-            <div class="px-8">
+            <div class="px-5">
               <div class="flex flex-col">
                 <div>To own this artwork, you must <span class="italic">deposit what you think it is worth.</span></div>
                 <div><span class="italic">Anyone can buy it off you</span>, by depositing a higher amount.</div>
@@ -35,7 +34,7 @@ export default function Home() {
                   <div class="text-gray-400">$123.45</div>
                 </div>
                 <div class="flex flex-col pl-12">
-                  <div>Artist Yield</div>
+                  <div>Artist Earnings</div>
                   <div class="text-4xl py-4">0.131982 ETH</div>
                   <div class="text-gray-400">Owner Yield: 0.081712 ETH</div>
                 </div>
@@ -44,7 +43,7 @@ export default function Home() {
                 <div class="pb-4 font-semibold">Purchase and Set New Price: </div>
                 <div class="flex flex-row items-center text-lg">
                   <div>
-                    <input default="0.13" class="input border border-gray-400 appearance-none rounded w-full px-3 py-3 focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600" type="number" />
+                    <input default="0.13" class="input border border-gray-400 appearance-none rounded w-36 px-3 py-3 focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600" type="number" />
                   </div>
                   <div class="px-3">ETH</div>
                   <button type="submit" class="inline-flex justify-center ml-5 py-4 px-6 border border-transparent shadow-sm text-md font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
@@ -69,22 +68,28 @@ export default function Home() {
 
                     <div class="pb-5">2. Harberger Taxes - This mechanism solves the above, by putting the item "always on sale", and charging the owner a tax. But such a mechanism can be unappealing to people who are accustomed to traditional property rights.</div>
 
-                    <div class="pb-5">"This Artwork Earns Yield" introduces two tweaks to the Harberger Taxes model:</div>
+                    <div class="pb-5">"This Artwork Earns Yield" combines both of these mechanisms, with a couple of tweaks:</div>
                     <div class="pb-5">
-                      - A fixed, refundable deposit, rather than a fee pool that must be topped up<br />
-                      - Instead of taxing the owner, both the creator and owner earn yield from the deposit
+                      - A fixed, refundable deposit, instead of fees that need to be topped up<br />
+                      - Royalties paid with DeFi yield, instead of taxes
                     </div>
                     <div class="pb-5">While such a mechanism will not be appropriate for all NFTs, the hope is that the simpler UX may reduce friction enough to make it useful in some applications. </div>
 
-                    <div class="pb-5">We are also excited to start a conversation about how Ethereum's composability can be leveraged to create novel solutions to this challenge that would not otherwise be possible.</div>
+                    <div class="pb-5">We are also excited to start a conversation about how Ethereum's composability can be leveraged to create novel solutions to this challenge.</div>
 
-                    <h2 class="text-3xl">Credit</h2>
+                    <h2 class="text-3xl pt-5">Credit</h2>
 
-                    <div class="pt-5">Made with gwei by <a class="underline" target="_blank" href="https://twitter.com/ptrwtts">@ptrwtts</a> and <a class="underline" target="_blank" href="https://github.com/georgeroman">@georgeroman</a></div>
+                    <div class="pt-5"> - Made by <a class="underline" target="_blank" href="https://twitter.com/ptrwtts">@ptrwtts</a> and <a class="underline" target="_blank" href="https://github.com/georgeroman">@georgeroman</a></div>
 
-                    <div class="pt-5">Inspired by <a class="underline" target="_blank" href="https://thisartworkisalwaysonsale.com/">This Artwork Is Always On Sale</a></div>
+                    <div class="pt-2"> - Inspired by <a class="underline" target="_blank" href="https://thisartworkisalwaysonsale.com/">This Artwork Is Always On Sale</a></div>
+                    
+                    <div class="pt-2"> - Yield by <a class="underline" target="_blank" href="https://yearn.finance/vaults">Yearn Vaults</a></div>
 
-                    <div class="pt-5">Prompted by <a class="underline" target="_blank" href="https://nfthack.ethglobal.co/">NFT Hack</a> (unofficial submission because we forgot to signup 😭)</div>
+                    <div class="pt-2"> - Prompted by <a class="underline" target="_blank" href="https://nfthack.ethglobal.co/">NFT Hack</a> (unofficial submission because we forgot to signup 😭)</div>
+
+                    <h2 class="text-3xl pt-10">Disclaimer</h2>
+
+                    <div class="pt-5">Please review <a class="underline" target="_blank" href="https://github.com/georgeroman/liquid-nft">contract code</a>. Use at your own risk.</div>
 
                 </div>
             </div>
