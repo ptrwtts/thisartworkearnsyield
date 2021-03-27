@@ -39,50 +39,51 @@ export default function Home() {
     const startTime = new Date('Mar-21-2021 19:05:39').getTime(); //Date.now()
 
     const readOnlyProvider = test
-      ? new ethers.providers.JsonRpcProvider("https://eth-goerli.alchemyapi.io/v2/qaRch1jm75Vit_6Y1IGPVYenp-gKn_GO")
-      : new ethers.providers.JsonRpcProvider("https://eth-mainnet.alchemyapi.io/v2/psgRyOX_y0sFlhP5qNe4W4UrJ6MpOpEd");
+      ? new ethers.providers.JsonRpcProvider("https://goerli.infura.io/v3/07855fe07de24e23b1c9c607e1f68ebe")
+      : new ethers.providers.JsonRpcProvider("https://mainnet.infura.io/v3/07855fe07de24e23b1c9c607e1f68ebe");
 
-    readOnlyProvider.on("block", async () => {
-      console.log('new block');
-      if(!initalLoad) {
-        console.log('ignoring');
-      } else  {
+    // const readOnlyProvider = test
+    //   ? new ethers.providers.JsonRpcProvider("https://eth-goerli.alchemyapi.io/v2/qaRch1jm75Vit_6Y1IGPVYenp-gKn_GO")
+    //   : new ethers.providers.JsonRpcProvider("https://eth-mainnet.alchemyapi.io/v2/psgRyOX_y0sFlhP5qNe4W4UrJ6MpOpEd");
 
-        const currentPrice = await artStewardRO.sellPrice();
-        setCurrentPrice(currentPrice);
+    // readOnlyProvider.on("block", async () => {
+    //   console.log('new block');
+    //   if(!initalLoad) {
+    //     console.log('ignoring');
+    //   } else  {
+    //     const currentPrice = await artStewardRO.sellPrice();
+    //     setCurrentPrice(currentPrice);
     
-        let ownerEarn = await artStewardRO.totalEarnings(owner);
-        let artistEarn = await artStewardRO.totalEarnings(artist);
-        const _yield = await artStewardRO.getCurrentYield();
-        ownerEarn = ownerEarn.add(_yield.div(2));
-        artistEarn = artistEarn.add(_yield.sub(_yield.div(2)))
+    //     let ownerEarn = await artStewardRO.totalEarnings(owner);
+    //     let artistEarn = await artStewardRO.totalEarnings(artist);
+    //     const _yield = await artStewardRO.getCurrentYield();
+    //     ownerEarn = ownerEarn.add(_yield.div(2));
+    //     artistEarn = artistEarn.add(_yield.sub(_yield.div(2)))
 
-        // Approximate incremental yield
-        let timeElapsed = Date.now() - startTime;
-        let hardcodedAPY = 0.0878 * 1000000;
-        let yearMilliseconds = 365 * 24 * 60 * 60 * 1000;
-        let accrued =  deposit.mul(hardcodedAPY).div(1000000).mul(timeElapsed).div(yearMilliseconds); 
-        artistEarn = artistEarn.add(accrued)
-        ownerEarn = ownerEarn.add(accrued)
+    //     // Approximate incremental yield
+    //     let timeElapsed = Date.now() - startTime;
+    //     let hardcodedAPY = 0.0878 * 1000000;
+    //     let yearMilliseconds = 365 * 24 * 60 * 60 * 1000;
+    //     let accrued =  deposit.mul(hardcodedAPY).div(1000000).mul(timeElapsed).div(yearMilliseconds); 
+    //     artistEarn = artistEarn.add(accrued)
+    //     ownerEarn = ownerEarn.add(accrued)
     
-        console.log('setting 1')
-        setArtistEarnings(artistEarn);
-        setOwnerEarnings(ownerEarn);
+    //     console.log('setting 1')
+    //     setArtistEarnings(artistEarn);
+    //     setOwnerEarnings(ownerEarn);
     
-        const yearnVaultsData = await fetch("https://vaults.finance/all");
-        const vaultsData = await yearnVaultsData.json();
-        const yvWETH = vaultsData.filter(data => data.symbol === "yvWETH");
-        const apy = (yvWETH[0].apy.recommended * 100).toFixed(2);
-        setYearnAPY(apy);
+    //     const yearnVaultsData = await fetch("https://vaults.finance/all");
+    //     const vaultsData = await yearnVaultsData.json();
+    //     const yvWETH = vaultsData.filter(data => data.symbol === "yvWETH");
+    //     const apy = (yvWETH[0].apy.recommended * 100).toFixed(2);
+    //     setYearnAPY(apy);
 
-        const coinGeckoPriceData = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=ethereum');
-        const priceData = await coinGeckoPriceData.json();
-        const usdPrice = priceData[0].current_price;
-        setCurrentPriceDollars((usdPrice * Number(ethers.utils.formatEther(currentPrice))).toString());
-
-      }
-      
-    });
+    //     const coinGeckoPriceData = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=ethereum');
+    //     const priceData = await coinGeckoPriceData.json();
+    //     const usdPrice = priceData[0].current_price;
+    //     setCurrentPriceDollars((usdPrice * Number(ethers.utils.formatEther(currentPrice))).toString());
+    //   }
+    // });
 
     const artStewardRO = new ethers.Contract(artStewardAddress, ArtStewardAbi, readOnlyProvider);
     setArtStewardRO(artStewardRO);
